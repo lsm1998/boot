@@ -13,7 +13,6 @@ public class JsonResultUtil
     public static Map<String, Object> susses(int code, String susses)
     {
         Map<String, Object> map = new HashMap();
-        map.clear();
         map.put("code", code);
         map.put("susses", susses);
         return map;
@@ -22,8 +21,6 @@ public class JsonResultUtil
     public static Map<String, Object> error(int code, String error)
     {
         Map<String, Object> map = new HashMap();
-
-        map.clear();
         map.put("code", code);
         map.put("error", error);
         return map;
@@ -32,7 +29,6 @@ public class JsonResultUtil
     public static Map<String, Object> of(Object data)
     {
         Map<String, Object> map = new HashMap();
-        map.clear();
         map.put("data", data);
         return map;
     }
