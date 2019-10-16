@@ -8,7 +8,6 @@ import java.lang.reflect.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.util.*;
 
 /**
@@ -20,36 +19,36 @@ public class MyAnalyticMethod
 {
     protected static Object invoke(Method method, Object[] args, Connection connection)
     {
-        Object restlt = null;
+        Object result = null;
         StringBuilder sql = new StringBuilder();
         if (method.isAnnotationPresent(MySelect.class))
         {
-            restlt = exeSelect(method, args, sql, connection);
+            result = exeSelect(method, args, sql, connection);
         } else if (method.isAnnotationPresent(MyInsert.class) || method.isAnnotationPresent(MyUpdate.class) || method.isAnnotationPresent(MyDelete.class))
         {
-            restlt = exeUpdate(method, args, sql, connection);
+            result = exeUpdate(method, args, sql, connection);
         }
 
         Class<?> resultType = method.getReturnType();
         if (TypeUtil.isComposite(resultType))
         {
-            return restlt;
+            return result;
         } else if (TypeUtil.isString(resultType))
         {
-            return restlt.toString();
+            return result.toString();
         }
         if (resultType == int.class || resultType == Integer.class)
         {
-            return Integer.parseInt(restlt.toString());
+            return Integer.parseInt(result.toString());
         } else if (resultType == long.class || resultType == Long.class)
         {
-            return Long.parseLong(restlt.toString());
+            return Long.parseLong(result.toString());
         } else if (resultType == byte.class || resultType == Byte.class)
         {
-            return Byte.parseByte(restlt.toString());
+            return Byte.parseByte(result.toString());
         } else if (resultType == short.class || resultType == Short.class)
         {
-            return Byte.parseByte(restlt.toString());
+            return Byte.parseByte(result.toString());
         }
         return null;
     }

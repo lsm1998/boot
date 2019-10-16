@@ -4,7 +4,6 @@ import com.lsm1998.ibatis.auto.AutoTables;
 import com.lsm1998.ibatis.session.MyConfiguration;
 import com.lsm1998.ibatis.util.MySQLUtil;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
@@ -14,7 +13,7 @@ import java.util.Properties;
  * @时间：18-12-24-下午3:46
  * @说明：
  */
-public class MyAnnotationConfigBuilder extends MyBaseBuilder
+public class MyAnnotationConfigBuilder
 {
     private Properties properties;
     private boolean update;
@@ -24,7 +23,6 @@ public class MyAnnotationConfigBuilder extends MyBaseBuilder
 
     static
     {
-
         String osName = System.getProperty("os.name");
         if (osName.startsWith("Windows"))
         {

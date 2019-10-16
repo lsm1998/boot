@@ -137,7 +137,7 @@ public class MyGenericApplicationContext extends MyActionApplicationContext impl
     }
 
     @Override
-    public boolean remove(String naem)
+    public boolean remove(String name)
     {
         return false;
     }

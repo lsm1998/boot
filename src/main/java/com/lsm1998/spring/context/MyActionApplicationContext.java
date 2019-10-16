@@ -53,10 +53,6 @@ public class MyActionApplicationContext extends MyAbstractActionFactory
     @Override
     protected void scanComponent(Class clazz, Properties properties)
     {
-        // 初始化Mybatis
-//        MySqlSessionFactory sessionFactory = new MySqlSessionFactoryBuilder().build(properties, true);
-//        beanMap.put("com.lsm1998.ibatis.session.MyDefaultSqlSessionFactory",sessionFactory);
-//        System.out.println("sessionFactory注入，beanMap="+beanMap);
         var bootApplication = (MySpringBootApplication) clazz.getAnnotation(MySpringBootApplication.class);
         // 是否排除Mybatis依赖
         Class[] classes = bootApplication.exclude();

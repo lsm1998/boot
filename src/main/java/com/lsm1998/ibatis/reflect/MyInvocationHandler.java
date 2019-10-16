@@ -12,18 +12,18 @@ import java.util.Arrays;
  */
 public class MyInvocationHandler<T> implements InvocationHandler
 {
-    private T tagrt;
+    private T target;
     private Connection connection;
 
 
-    protected MyInvocationHandler(T tagrt, Connection connection)
+    protected MyInvocationHandler(T target, Connection connection)
     {
-        this.tagrt = tagrt;
+        this.target = target;
         this.connection = connection;
     }
 
     @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable
+    public Object invoke(Object proxy, Method method, Object[] args)
     {
         Object result = MyAnalyticMethod.invoke(method, args, connection);
         return result;

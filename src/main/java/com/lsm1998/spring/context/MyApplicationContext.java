@@ -21,10 +21,10 @@ public interface MyApplicationContext extends MyBeanFactory
 
     /**
      * 根据name删除一个Bean
-     * @param naem
+     * @param name
      * @return
      */
-    boolean remove(String naem);
+    boolean remove(String name);
 
     /**
      * 根据类型删除一个bean

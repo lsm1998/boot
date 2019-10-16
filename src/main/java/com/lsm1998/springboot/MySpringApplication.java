@@ -43,16 +43,16 @@ public class MySpringApplication
         run(properties, clazz);
     }
 
-    private static void run(Properties properties, Class<?> calzz)
+    private static void run(Properties properties, Class<?> clazz)
     {
         // 首页配置Servlet
         ServletAndParrern indexServlet = new ServletAndParrern(new IndexServlet(properties));
         // 静态资源Servlet
         ServletAndParrern staticServlet = new ServletAndParrern(new StaticServlet());
         // 模版页面Servlet
-        ServletAndParrern templatesServlet=new ServletAndParrern(new TemplatesServlet());
+        ServletAndParrern templatesServlet = new ServletAndParrern(new TemplatesServlet());
         // SpringMVC
-        ServletAndParrern dispatchServlet = new ServletAndParrern(new MyDispatchServlet(calzz,properties));
+        ServletAndParrern dispatchServlet = new ServletAndParrern(new MyDispatchServlet(clazz, properties));
 
         List<ServletAndParrern> list = new ArrayList<>();
         list.add(indexServlet);
