@@ -35,7 +35,14 @@ public class MyHandlerMapping
     public static void registerMapping(Class clazz, Object bean)
     {
         MyRequestMapping controller = (MyRequestMapping) clazz.getAnnotation(MyRequestMapping.class);
-        String url = subUrl(controller.value());
+        String url;
+        if (controller == null)
+        {
+            url = "";
+        } else
+        {
+            url = subUrl(controller.value());
+        }
         Method[] methods = clazz.getDeclaredMethods();
         for (Method m : methods)
         {
@@ -82,6 +89,7 @@ public class MyHandlerMapping
                 result = handlerMethod.method.invoke(handlerMethod.bean, args);
             } catch (Exception e)
             {
+                System.err.println("执行handler方法发生错误：" + e.getMessage());
                 e.printStackTrace();
             }
             if (handlerMethod.method.getAnnotation(MyJson.class) != null)
@@ -190,7 +198,7 @@ public class MyHandlerMapping
                 {
                     if (parameMap.get(key).length == 1)
                     {
-                        setArgs(parameters[i],parameMap.get(key)[0],args,i);
+                        setArgs(parameters[i], parameMap.get(key)[0], args, i);
                     } else
                     {
                         args[i] = parameMap.get(key);
@@ -225,30 +233,30 @@ public class MyHandlerMapping
         return args;
     }
 
-    private void setArgs(Parameter parameter, String s,Object[] args,int i)
+    private void setArgs(Parameter parameter, String s, Object[] args, int i)
     {
-        if(parameter.getType()==Long.class||parameter.getType()==long.class)
+        if (parameter.getType() == Long.class || parameter.getType() == long.class)
         {
-            args[i] =  Long.parseLong(s);
-        }else if(parameter.getType()==Integer.class||parameter.getType()==int.class)
+            args[i] = Long.parseLong(s);
+        } else if (parameter.getType() == Integer.class || parameter.getType() == int.class)
         {
-            args[i] =  Integer.parseInt(s);
-        }else if(parameter.getType()==Short.class||parameter.getType()==short.class)
+            args[i] = Integer.parseInt(s);
+        } else if (parameter.getType() == Short.class || parameter.getType() == short.class)
         {
-            args[i] =  Short.parseShort(s);
-        }else if(parameter.getType()==Byte.class||parameter.getType()==byte.class)
+            args[i] = Short.parseShort(s);
+        } else if (parameter.getType() == Byte.class || parameter.getType() == byte.class)
         {
-            args[i] =  Byte.parseByte(s);
-        }else if(parameter.getType()==Float.class||parameter.getType()==float.class)
+            args[i] = Byte.parseByte(s);
+        } else if (parameter.getType() == Float.class || parameter.getType() == float.class)
         {
-            args[i] =  Float.parseFloat(s);
-        }else if(parameter.getType()==Double.class||parameter.getType()==double.class)
+            args[i] = Float.parseFloat(s);
+        } else if (parameter.getType() == Double.class || parameter.getType() == double.class)
         {
-            args[i] =  Double.parseDouble(s);
-        }else if(parameter.getType()==Boolean.class||parameter.getType()==boolean.class)
+            args[i] = Double.parseDouble(s);
+        } else if (parameter.getType() == Boolean.class || parameter.getType() == boolean.class)
         {
-            args[i] =  Boolean.parseBoolean(s);
-        }else
+            args[i] = Boolean.parseBoolean(s);
+        } else
         {
             args[i] = s;
         }
